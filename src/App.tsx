@@ -551,8 +551,10 @@ export default function App() {
         <HsaFrioForm date={hsaDate} rows={hsaFrio} setRows={setHsaFrio} />
       )}
     </div>
-  );
+  </div>
+);
 }
+
 
 type HsaRececaoFormProps = {
   date: string;

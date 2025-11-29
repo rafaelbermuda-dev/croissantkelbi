@@ -1,0 +1,16 @@
+{
+  "name": "Checklist \u2022 Croissant Kelbi",
+  "short_name": "CK Checklist",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/Logo Secundario Croissant Kelbi.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
