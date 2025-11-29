@@ -454,106 +454,163 @@ export default function App() {
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4 py-6">
-      <div className="w-full max-w-4xl bg-white/95 backdrop-blur shadow-xl rounded-2xl border border-slate-200 p-6">
-        <header className="mb-6 pb-4 border-b border-slate-200 flex items-center justify-between gap-4">
-        <div>
-          <div className="text-2xl font-semibold tracking-tight text-slate-900">Croissant Kelbi · HSA</div>
-          <div className="text-sm text-slate-500">
-            Registo diário · Receção · Hortofrutícolas · Óleo · Frio
-          </div>
-        </div>
-        <div className="flex flex-col items-end gap-2">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Data</span>
-            <input
-              type="date"
-              className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
-              value={hsaDate}
-              onChange={(e) => setHsaDate(e.target.value)}
+    return (
+    <div className="min-h-screen bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-8 flex items-center justify-center">
+      <div className="w-full max-w-6xl grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.7fr)] items-stretch">
+        {/* Painel lateral com imagem e texto */}
+        <div className="relative overflow-hidden rounded-3xl border border-amber-500/40 bg-gradient-to-br from-amber-500/25 via-amber-400/10 to-slate-900 px-6 py-8 flex flex-col justify-between shadow-2xl">
+          <div
+            className="absolute inset-0 pointer-events-none opacity-40 mix-blend-screen"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 0 0, rgba(255,255,255,0.4), transparent 65%), radial-gradient(circle at 100% 100%, rgba(255,255,255,0.25), transparent 55%)",
+            }}
+          />
+          <div className="relative space-y-6">
+            <img
+              src="/Logo Secundario Croissant Kelbi.png"
+              alt="Croissant Kelbi"
+              className="h-16 md:h-20 object-contain drop-shadow-xl"
             />
+            <h1 className="text-3xl md:text-4xl font-semibold text-white leading-tight">
+              Checklists HSA
+              <span className="block text-amber-200 text-lg md:text-2xl mt-1">
+                Croissant Kelbi
+              </span>
+            </h1>
+            <p className="text-sm md:text-base text-amber-50/80 max-w-md">
+              Regista receção de mercadorias, hortofrutícolas, óleo de fritura e
+              temperaturas de frio num único painel simples para a equipa.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-2 justify-end">
-            <button
-              type="button"
-              className="border border-slate-300 px-4 py-2 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
-              onClick={handleGeneratePdf}
-            >
-              Gerar PDF
-            </button>
-            <button
-              type="button"
-              className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-emerald-500 hover:bg-emerald-600 shadow-sm transition whatsapp-btn"
-              onClick={handleSendWhatsApp}
-            >
-              Enviar WhatsApp
-            </button>
-            <button
-              type="button"
-              className="border border-slate-300 px-4 py-2 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
-              onClick={() => handleSendEmailKelbi("croissantkelbicacem@gmail.com")}
-            >
-              Enviar Kelbi Cacém
-            </button>
-            <button
-              type="button"
-              className="border border-slate-300 px-4 py-2 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
-              onClick={() => handleSendEmailKelbi("croissantkelbimemmartins@gmail.com")}
-            >
-              Enviar Kelbi Mem-Martins
-            </button>
+
+          <div className="relative mt-8 grid gap-3 text-xs md:text-sm text-amber-50/85">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-500/20 border border-amber-300/60 text-[0.7rem] font-semibold">
+                PDF
+              </span>
+              <span>Exportação imediata para PDF para auditorias e arquivo.</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-300/60 text-[0.7rem] font-semibold">
+                Equipa
+              </span>
+              <span>Interface limpa e rápida para a equipa preencher no dia a dia.</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/20 border border-sky-300/60 text-[0.7rem] font-semibold">
+                HSA
+              </span>
+              <span>Organização profissional dos registos de Higiene e Segurança Alimentar.</span>
+            </div>
           </div>
         </div>
-      </header>
 
-      <div className="tabs mb-4 flex flex-wrap gap-2">
-        <button
-          type="button"
-          className={hsaTab === "rececao" ? "tab active" : "tab"}
-          onClick={() => setHsaTab("rececao")}
-        >
-          Receção de Mercadorias
-        </button>
-        <button
-          type="button"
-          className={hsaTab === "horto" ? "tab active" : "tab"}
-          onClick={() => setHsaTab("horto")}
-        >
-          Desinfeção Hortofrutícolas
-        </button>
-        <button
-          type="button"
-          className={hsaTab === "oleo" ? "tab active" : "tab"}
-          onClick={() => setHsaTab("oleo")}
-        >
-          Óleo de Fritura
-        </button>
-        <button
-          type="button"
-          className={hsaTab === "frio" ? "tab active" : "tab"}
-          onClick={() => setHsaTab("frio")}
-        >
-          Temperaturas de Frio
-        </button>
+        {/* Painel principal com formulários */}
+        <div className="w-full bg-white/95 backdrop-blur-md shadow-xl rounded-3xl border border-slate-200 p-5 md:p-7 flex flex-col gap-5">
+          <header className="pb-4 border-b border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="text-lg md:text-xl font-semibold tracking-tight text-slate-900">
+                Registos diários HSA
+              </div>
+              <div className="text-xs md:text-sm text-slate-500">
+                Escolhe o tipo de registo e preenche os campos necessários.
+              </div>
+            </div>
+            <div className="flex flex-col items-end gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-xs md:text-sm text-gray-600">Data</span>
+                <input
+                  type="date"
+                  className="border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+                  value={hsaDate}
+                  onChange={(e) => setHsaDate(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-wrap gap-2 justify-end">
+                <button
+                  type="button"
+                  className="border border-slate-300 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
+                  onClick={handleGeneratePdf}
+                >
+                  Gerar PDF
+                </button>
+                <button
+                  type="button"
+                  className="px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-white bg-emerald-500 hover:bg-emerald-600 shadow-sm transition"
+                  onClick={handleSendWhatsApp}
+                >
+                  Enviar WhatsApp
+                </button>
+                <button
+                  type="button"
+                  className="border border-slate-300 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
+                  onClick={() => handleSendEmailKelbi("croissantkelbicacem@gmail.com")}
+                >
+                  Kelbi Cacém
+                </button>
+                <button
+                  type="button"
+                  className="border border-slate-300 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition"
+                  onClick={() => handleSendEmailKelbi("croissantkelbimemmartins@gmail.com")}
+                >
+                  Kelbi Mem-Martins
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <div className="tabs mb-3 flex flex-wrap gap-2">
+            <button
+              type="button"
+              className={hsaTab === "rececao" ? "tab active" : "tab"}
+              onClick={() => setHsaTab("rececao")}
+            >
+              Receção de Mercadorias
+            </button>
+            <button
+              type="button"
+              className={hsaTab === "horto" ? "tab active" : "tab"}
+              onClick={() => setHsaTab("horto")}
+            >
+              Desinfeção Hortofrutícolas
+            </button>
+            <button
+              type="button"
+              className={hsaTab === "oleo" ? "tab active" : "tab"}
+              onClick={() => setHsaTab("oleo")}
+            >
+              Óleo de Fritura
+            </button>
+            <button
+              type="button"
+              className={hsaTab === "frio" ? "tab active" : "tab"}
+              onClick={() => setHsaTab("frio")}
+            >
+              Temperaturas de Frio
+            </button>
+          </div>
+
+          <div className="flex-1 min-h-[320px]">
+            {hsaTab === "rececao" && (
+              <HsaRececaoForm date={hsaDate} rows={hsaRececao} setRows={setHsaRececao} />
+            )}
+            {hsaTab === "horto" && (
+              <HsaHortoForm date={hsaDate} rows={hsaHorto} setRows={setHsaHorto} />
+            )}
+            {hsaTab === "oleo" && (
+              <HsaOleoForm date={hsaDate} rows={hsaOleo} setRows={setHsaOleo} />
+            )}
+            {hsaTab === "frio" && (
+              <HsaFrioForm date={hsaDate} rows={hsaFrio} setRows={setHsaFrio} />
+            )}
+          </div>
+        </div>
       </div>
-
-      {hsaTab === "rececao" && (
-        <HsaRececaoForm date={hsaDate} rows={hsaRececao} setRows={setHsaRececao} />
-      )}
-      {hsaTab === "horto" && (
-        <HsaHortoForm date={hsaDate} rows={hsaHorto} setRows={setHsaHorto} />
-      )}
-      {hsaTab === "oleo" && (
-        <HsaOleoForm date={hsaDate} rows={hsaOleo} setRows={setHsaOleo} />
-      )}
-      {hsaTab === "frio" && (
-        <HsaFrioForm date={hsaDate} rows={hsaFrio} setRows={setHsaFrio} />
-      )}
     </div>
-  </div>
-);
-}
+  );
+  }
+
 
 
 type HsaRececaoFormProps = {
