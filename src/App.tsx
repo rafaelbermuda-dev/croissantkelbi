@@ -901,8 +901,8 @@ function HsaFrioForm({ date, rows, setRows }: HsaFrioFormProps) {
         equipamento: "",
         leitura1: "",
         leitura2: "",
-        observacoes: "",
         rubrica: "",
+        observacoes: "",
       },
     ]);
   };
@@ -923,12 +923,13 @@ function HsaFrioForm({ date, rows, setRows }: HsaFrioFormProps) {
       <div className="text-xs text-gray-600 mb-2">
         Podes registar várias leituras no mesmo dia (ex.: diferentes equipamentos).
       </div>
+
       <div className="grid gap-2">
         {filtered.map((r) => (
           <div key={r.id} className="border rounded-lg p-2 grid gap-2">
             <div className="grid gap-2 md:grid-cols-2">
               <input
-                className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+                className="border rounded px-2 py-1 text-sm"
                 placeholder="Equipamento (ex.: Frio 1)"
                 value={r.equipamento}
                 onChange={(e) =>
@@ -936,32 +937,40 @@ function HsaFrioForm({ date, rows, setRows }: HsaFrioFormProps) {
                 }
               />
               <input
-                className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+                className="border rounded px-2 py-1 text-sm"
                 placeholder="1ª leitura (ºC)"
                 value={r.leitura1}
-                onChange={(e) => updateRow(r.id, { leitura1: e.target.value })}
+                onChange={(e) =>
+                  updateRow(r.id, { leitura1: e.target.value })
+                }
               />
               <input
-                className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+                className="border rounded px-2 py-1 text-sm"
                 placeholder="2ª leitura (ºC)"
                 value={r.leitura2}
-                onChange={(e) => updateRow(r.id, { leitura2: e.target.value })}
+                onChange={(e) =>
+                  updateRow(r.id, { leitura2: e.target.value })
+                }
               />
               <input
-                className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+                className="border rounded px-2 py-1 text-sm"
                 placeholder="Rubrica"
                 value={r.rubrica}
-                onChange={(e) => updateRow(r.id, { rubrica: e.target.value })}
+                onChange={(e) =>
+                  updateRow(r.id, { rubrica: e.target.value })
+                }
               />
             </div>
+
             <textarea
-              className="border border-slate-300 rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 bg-white"
+              className="border rounded px-2 py-1 text-sm"
               placeholder="Observações"
               value={r.observacoes}
               onChange={(e) =>
                 updateRow(r.id, { observacoes: e.target.value })
               }
             />
+
             <button
               type="button"
               className="text-xs text-red-600 ml-auto"
@@ -972,7 +981,12 @@ function HsaFrioForm({ date, rows, setRows }: HsaFrioFormProps) {
           </div>
         ))}
       </div>
-      <button type="button" className="mt-3 text-sm font-medium text-amber-700 hover:text-amber-800" onClick={addRow}>
+
+      <button
+        type="button"
+        className="mt-3 text-sm font-medium text-amber-700 hover:text-amber-800"
+        onClick={addRow}
+      >
         + Adicionar linha
       </button>
     </div>
